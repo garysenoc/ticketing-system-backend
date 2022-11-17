@@ -17,7 +17,9 @@ app.route('/get').get((req, res) => {
 
 app.listen(5000, () => {
   mongoose
-    .connect('mongodb://localhost:27017/ticketing')
+    .connect(
+      'mongodb+srv://takaad:takaad@devconnector.hwyis.mongodb.net/?retryWrites=true&w=majority',
+    )
     .then(() => console.log('DB connection established'));
   console.log(`App running on port 5000`);
 });
