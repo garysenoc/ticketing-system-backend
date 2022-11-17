@@ -43,6 +43,10 @@ const requestFormSchema = new mongoose.Schema({
     type: String,
     required: [true, 'User must have a special request'],
   },
+  referenceId: {
+    type: String,
+    required: [true, 'User must have a reference ID'],
+  },
   dateRequested: {
     type: Date,
     default: Date.now(),

@@ -65,6 +65,31 @@ const loginAdmin = async (req, res) => {
   }
 };
 
+const forgotAdmin = async (req, res) => {
+  // done
+  try {
+    const { email } = req.body;
+
+    const adminAccount = await Admin.findOne({ email: email });
+
+    if (!adminAccount)
+      return res.status(401).json({ errorMessage: 'Invalid Credentials' });
+
+    //Tour.findOne({_id=req.params.id})
+    res.status(200).json({
+      status: 'forgot email check success',
+      data: {
+        adminAccount,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
+};
+
 const createAdmin = async (req, res) => {
   try {
     const adminAccount = await Admin.create(req.body);
@@ -115,7 +140,7 @@ const updateAdmin = async (req, res) => {
     res.status(200).json({
       status: 'success',
       data: {
-        requestForm,
+        adminAccount,
       },
     });
   } catch (err) {
@@ -132,6 +157,7 @@ module.exports = {
   createAdmin,
   deleteAdmin,
   updateAdmin,
+  forgotAdmin,
   loginAdmin,
 };
 

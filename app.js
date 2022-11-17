@@ -1,13 +1,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const AdminRoutes = require('./routes/admin');
 const RequestFormRoutes = require('./routes/requestForm');
 
 const app = express();
 app.use(express.json({ limit: '50mb' }));
 
+app.use(cors());
+
 app.use('/api/admin', AdminRoutes);
-app.use('/api/request-form', RequestFormRoutes);
+app.use('/api/requestForm', RequestFormRoutes);
+app.route('/get').get((req, res) => {
+  res.send('das');
+});
 
 app.listen(5000, () => {
   mongoose

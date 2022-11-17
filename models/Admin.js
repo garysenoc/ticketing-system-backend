@@ -16,6 +16,7 @@ const adminSchema = new mongoose.Schema({
   },
   email: {
     type: String,
+    unique: true,
     required: [true, 'User must have an email'],
   },
 
